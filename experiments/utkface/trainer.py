@@ -243,7 +243,7 @@ if __name__ == "__main__":
 
     parser = ArgumentParser("UTKFace", parents=[common_parser])
     parser.set_defaults(
-        data_path="/local_datasets/UTKFace",
+        data_path="./dataset/UTKFace",
         lr=1e-3,
         wd=1e-4,
         n_epochs=100,
