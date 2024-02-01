@@ -53,7 +53,7 @@ common_parser.add_argument("--seed", type=int, default=42, help="seed value")
 common_parser.add_argument(
     "--gamma",
     type=float,
-    default=1.,
+    default=0.005,
     help="standard normal covariance scalar"
 )
 common_parser.add_argument(
@@ -65,18 +65,18 @@ common_parser.add_argument(
 common_parser.add_argument(
         "--sqrt-power",
         type=float,
-        default=0.5,
+        default=0.3,
         help="inner optimizer lr",
 )
 common_parser.add_argument(
         "--sqrt-power-cls",
         type=float,
-        default=0.5,
+        default=0.1,
         help="inner optimizer lr",
 )
 common_parser.add_argument(
     "--ls-epochs",
-    default=1,
+    default=10,
     type=int,
     help="num pre-train epochs of linear scalarization"
 )
