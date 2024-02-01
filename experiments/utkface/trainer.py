@@ -110,7 +110,7 @@ def main(args, device):
     method = BayesAggMTL(num_tasks=n_tasks, n_outputs_per_task_group=[1, 2, 5],
                          task_types=['regression', 'multiclass', 'multiclass'],
                          agg_scheme_hps={},
-                         reg_hps={'sqrt_power': args.sqrt_power, 'obs_noise': args.obs_noise},
+                         reg_hps={'sqrt_power': args.sqrt_power},
                          cls_hps={'gamma': args.gamma, 'sqrt_power': args.sqrt_power_cls,
                                   'num_mc_samples': args.num_mc_samples,}
                         )
@@ -236,8 +236,6 @@ def main(args, device):
 
 
 if __name__ == "__main__":
-
-    from os.path import exists
 
     parser = ArgumentParser("UTKFace", parents=[common_parser])
     parser.set_defaults(
