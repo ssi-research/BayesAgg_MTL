@@ -10,7 +10,7 @@ pip install -e .
 
 2. Download the UTKFace dataset from the offical repository [[Link]](https://susanqq.github.io/UTKFace/) or kaggle [[Link]](https://www.kaggle.com/datasets/jangedoo/utkface-new) and place it under experiments/utkface/dataset
 
-### Running th code
+### Running the code
 ```bash
 cd experiments/utkface
 python trainer.py
