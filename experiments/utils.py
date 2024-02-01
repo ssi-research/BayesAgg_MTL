@@ -57,12 +57,6 @@ common_parser.add_argument(
     help="standard normal covariance scalar"
 )
 common_parser.add_argument(
-    "--gamma-cls",
-    type=float,
-    default=1.,
-    help="standard normal covariance scalar"
-)
-common_parser.add_argument(
     "--num-mc-samples",
     type=int,
     default=1024,
