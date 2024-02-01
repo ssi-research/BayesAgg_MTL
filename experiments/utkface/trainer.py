@@ -3,9 +3,7 @@ import logging
 import numpy as np
 import torch
 import torch.nn as nn
-import wandb
 from tqdm import trange
-from pathlib import Path
 from experiments.utkface.data import UTKFacesData
 from experiments.utkface.models import ResNetEncoder
 from BayesAgg_MTL import BayesAggMTL
@@ -256,6 +254,9 @@ if __name__ == "__main__":
                         type=str, choices=["relu", "elu"],
                         help="last layer activation")
 
+
     args = parser.parse_args()
+
+    set_seed(args.seed)
     device = get_device(gpus=args.gpu)
     main(args=args, device=device)
