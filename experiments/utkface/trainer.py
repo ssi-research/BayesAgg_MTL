@@ -65,9 +65,6 @@ def evaluate(model, loader, n_tasks, dataset="val", mean_w_age=None):
         x, a, g, r = (datum.to(device) for datum in data)
         logits, features = model(x, return_representation=True)
         if mean_w_age is not None:
-            if args.include_bias:
-                features = torch.cat((features, torch.ones(features.shape[0],
-                                                           device=features.device).unsqueeze(-1)), dim=-1)
             logits[0] = features @ mean_w_age.t()
 
         losses_per_task += loss_module.forward(logits, (a, g, r)).sum(0)
