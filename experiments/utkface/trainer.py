@@ -241,8 +241,11 @@ if __name__ == "__main__":
         wd=1e-4,
         n_epochs=100,
         batch_size=128,
-        ls_epochs=5,
+        ls_epochs=10,
         n_workers=8,
+        gamma=0.005,
+        sqrt_power=0.3,
+        sqrt_power_cls=0.1,
     )
     parser.add_argument("--activation",
                         default="elu",
