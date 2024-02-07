@@ -22,5 +22,10 @@ python trainer.py
 ### Citation
 Please cite this paper if you want to use it in your work,
 ```
-TBD
+@article{achituve2024bayes,
+  title={Bayesian Uncertainty for Gradient Aggregation in Multi-Task Learning},
+  author={Achituve, Idan and Diamant, Idit and Netzer, Arnon and Chechik, Gal and Fetaya, Ethan},
+  journal={arXiv preprint arXiv:2402.04005},
+  year={2024}
+}
 ```
