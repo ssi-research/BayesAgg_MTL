@@ -13,7 +13,8 @@ from experiments.utils import (
     get_device,
     common_parser,
     set_seed,
-    set_logger
+    set_logger,
+    parse_eval_summary,
 )
 
 set_logger()
@@ -42,12 +43,6 @@ class UTKFaceMultiTaskLoss(nn.modules.loss._Loss):
             raise Exception("unrecognized input type for loss calculation")
 
         return torch.stack(loss, dim=1)
-
-
-def parse_eval_summary(metric, split, values):
-    d = {}
-    d.update({f"{split}/{metric}_task_{i}": j for i, j in enumerate(values)})
-    return d
 
 
 @torch.no_grad()
@@ -132,7 +127,6 @@ def main(args, device):
     best_val_task_accs = np.asarray([0] * 3)
     best_test_task_accs = np.asarray([0] * 3)
     step = -1
-    test_logits_gr, test_targets_gr = None, None
 
     for epoch in epoch_iterator:
         lr = scheduler.optimizer.param_groups[0]["lr"]

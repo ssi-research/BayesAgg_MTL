@@ -133,7 +133,6 @@ dmypy.json
 .DS_Store
 .idea/
 wandb/
-dataset/
 outputs/
 cifar-100-python/
 
