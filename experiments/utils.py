@@ -113,3 +113,8 @@ def get_device(no_cuda=False, gpus="0"):
     return torch.device(
         f"cuda:{gpus}" if torch.cuda.is_available() and not no_cuda else "cpu"
     )
+
+def parse_eval_summary(metric, split, values):
+    d = {}
+    d.update({f"{split}/{metric}_task_{i}": j for i, j in enumerate(values)})
+    return d
