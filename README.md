@@ -23,10 +23,16 @@ Where xxx is {utkface, ChestX_ray14, CIFAR_MTL}
 ### Citation
 Please cite this paper if you want to use it in your work,
 ```
-@article{achituve2024bayes,
-  title={Bayesian Uncertainty for Gradient Aggregation in Multi-Task Learning},
-  author={Achituve, Idan and Diamant, Idit and Netzer, Arnon and Chechik, Gal and Fetaya, Ethan},
-  journal={arXiv preprint arXiv:2402.04005},
-  year={2024}
+@inproceedings{achituve2024bayes,
+  author       = {Idan Achituve and
+                  Idit Diamant and
+                  Arnon Netzer and
+                  Gal Chechik and
+                  Ethan Fetaya},
+  title        = {Bayesian Uncertainty for Gradient Aggregation in Multi-Task Learning},
+  booktitle    = {Forty-first International Conference on Machine Learning, {ICML} 2024,
+                  Vienna, Austria, July 21-27, 2024},
+  publisher    = {OpenReview.net},
+  year         = {2024},
 }
 ```
