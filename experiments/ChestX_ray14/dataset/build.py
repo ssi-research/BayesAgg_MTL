@@ -26,9 +26,10 @@ IMG_SIZE = 224
 INTERPOLATION = 'bilinear'
 
 """
-Code largely taken from: https://github.com/rohban-lab/SwinCheX/tree/main
+Code largely taken from: https://github.com/rohban-lab/SwinCheX/blob/main/data/build.py
 """
 
+# The following is new
 def merge_folders(img_root):
     """
     data comes distributed to eleven folders. Merge them to one folder prior running
@@ -60,12 +61,12 @@ def build_loader(data_root, train_csv_path='./partition/train.csv',
                  batch_size=128, test_batch_size=256, num_workers=4):
 
     data_path = resize_images(data_root, train_csv_path, validation_csv_path,
-                              test_csv_path, batch_size, test_batch_size, num_workers)
+                              test_csv_path, batch_size, test_batch_size, num_workers)  # new
 
-    dataset_train = build_dataset(is_train=True, data_path=data_path, csv_path=train_csv_path)
-    dataset_val = build_dataset(is_train=False, data_path=data_path, csv_path=validation_csv_path)
-    dataset_test = build_dataset(is_train=False, data_path=data_path, csv_path=test_csv_path)
-
+    dataset_train = build_dataset(is_train=True, data_path=data_path, csv_path=train_csv_path)  # changed
+    dataset_val = build_dataset(is_train=False, data_path=data_path, csv_path=validation_csv_path)  # changed
+    dataset_test = build_dataset(is_train=False, data_path=data_path, csv_path=test_csv_path)  # changed
+                     
     train_loader = DataLoader(
         dataset_train,
         batch_size=batch_size,
@@ -97,14 +98,14 @@ def build_loader(data_root, train_csv_path='./partition/train.csv',
 
 def build_dataset(is_train, data_path, csv_path):
     transform = build_transform(is_train)
-    dataset_folder = MyImageFolder(root=data_path, csv_path=csv_path, transform=transform)
+    dataset_folder = MyImageFolder(root=data_path, csv_path=csv_path, transform=transform) # changed
     return dataset_folder
 
 
 def build_transform(is_train):
 
     if is_train:
-        # this should always dispatch to transforms_imagenet_train
+        # this should always dispatch to transforms_imagenet_train; configurations slightly changed/hard-coded from original paper
         transform = create_transform(
             input_size=IMG_SIZE,
             is_training=True,
@@ -124,7 +125,7 @@ def build_transform(is_train):
     t.append(transforms.Normalize(IMAGENET_DEFAULT_MEAN, IMAGENET_DEFAULT_STD))
     return transforms.Compose(t)
 
-
+# The following is new
 def resize_images(data_root, train_csv_path='./partition/train.csv',
                   validation_csv_path='./partition/validation.csv', test_csv_path='./partition/test.csv',
                   batch_size=128, test_batch_size=256, num_workers=4):
@@ -183,32 +184,3 @@ def resize_images(data_root, train_csv_path='./partition/train.csv',
                 save_image(tensor=x[k, ...], fp=new_data_path + im_name)
 
     return new_data_path
-
-if __name__ == '__main__':
-
-    import matplotlib.pyplot as plt
-    import torchvision.transforms.functional as F
-    from torchvision.utils import make_grid
-
-
-    def show(imgs):
-        if not isinstance(imgs, list):
-            imgs = [imgs]
-        fig, axs = plt.subplots(ncols=len(imgs), squeeze=False)
-        for i, img in enumerate(imgs):
-            img = img.detach()
-            img = F.to_pil_image(img)
-            axs[0, i].imshow(np.asarray(img))
-            axs[0, i].set(xticklabels=[], yticklabels=[], xticks=[], yticks=[])
-
-
-    train_loader, val_loader, test_loader = (
-        build_loader(data_root='/Vols/vol_design/tools/swat/datasets_backup/ChestX-ray8', num_workers=0))
-    # train_loader, val_loader, test_loader = (
-    #     resize_images(data_root='/Vols/vol_design/tools/swat/datasets_backup/ChestX-ray8', num_workers=0))
-
-    x, ys, paths = next(iter(train_loader))
-
-    grid = make_grid(x)
-    show(grid)
-    plt.show()
