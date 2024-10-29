@@ -14,6 +14,9 @@ from PIL import ImageFile
 
 ImageFile.LOAD_TRUNCATED_IMAGES = True
 
+"""
+Code taken from: https://github.com/rohban-lab/SwinCheX/blob/main/data/zipreader.py
+"""
 
 def is_zip_path(img_or_path):
     """judge if this is a zip path"""
