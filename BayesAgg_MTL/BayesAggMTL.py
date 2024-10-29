@@ -57,10 +57,10 @@ def _psd_safe_cholesky(A, out=None, jitter=None, max_tries=None):
                             f"{A.numel()} elements of the {A.shape} tensor are NaN.")
         exit(0)
 
-    if jitter is None:
-        jitter = 1e-7 if A.dtype == torch.float32 else 1e-9
-    if max_tries is None:
-        max_tries = 25
+    if jitter is None: # changed
+        jitter = 1e-7 if A.dtype == torch.float32 else 1e-9 # changed
+    if max_tries is None: # changed
+        max_tries = 25 # changed
     Aprime = A.clone()
     jitter_prev = 0
     for i in range(max_tries):
@@ -630,8 +630,8 @@ class LastLayerPosteriorTaylorApprox(LastLayerPosterior):
 
         # calculate Jacobians using the feature vector 'features'; add bias here to ensure compatibility with
         # the convention that the feature bias always comes after the data features
-        bias_term = torch.ones(bsize, device=features.device)[:, None]
-        features = torch.cat((features, bias_term), dim=1)
+        bias_term = torch.ones(bsize, device=features.device)[:, None]  # changed
+        features = torch.cat((features, bias_term), dim=1)  # changed
         identity = torch.eye(output_size, device=features.device).unsqueeze(0).tile(bsize, 1, 1)
         # Jacobians are batch x output x params
         Js = torch.einsum('kp,kij->kijp', features, identity).reshape(bsize, output_size, -1)
