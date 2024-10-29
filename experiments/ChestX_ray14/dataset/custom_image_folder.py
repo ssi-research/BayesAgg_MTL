@@ -13,6 +13,9 @@ import numpy as np
 
 IMG_EXTENSIONS = ('.jpg', '.jpeg', '.png', '.ppm', '.bmp', '.pgm', '.tif', '.tiff', '.webp')
 
+"""
+Code adapted from: https://github.com/rohban-lab/SwinCheX/blob/main/models/custom_image_folder.py
+"""
 
 def has_file_allowed_extension(filename: str, extensions: Tuple[str, ...]) -> bool:
     """Checks if a file is an allowed extension.
