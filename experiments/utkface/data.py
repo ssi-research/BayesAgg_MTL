@@ -71,6 +71,8 @@ def split_to_train_val_test(img_root='./dataset', train_size=0.8, val_size=0.125
 
 class UTKFaces(ImageFolder):
     """
+    Adapted from: https://github.com/nik-dim/pamal/blob/master/src/datasets/utkface.py
+    
     Data class for UTKFace.
     The labels of each face image is embedded in the file name, formated like [age]_[gender]_[race]_[date&time].jpg
     [age] is an integer from 0 to 116, indicating the age
