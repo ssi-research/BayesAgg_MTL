@@ -14,6 +14,9 @@ from PIL import Image
 
 from .zipreader import is_zip_path, ZipReader
 
+"""
+Code taken from: https://github.com/rohban-lab/SwinCheX/blob/main/data/cached_image_folder.py
+"""
 
 def has_file_allowed_extension(filename, extensions):
     """Checks if a file is an allowed extension.
