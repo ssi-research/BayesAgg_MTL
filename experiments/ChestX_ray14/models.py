@@ -177,7 +177,9 @@ def resnet18():
     model.fc = nn.Identity()
     return model
 
-
+"""
+resnet34 added
+"""
 def resnet34():
     import torchvision
 
@@ -186,6 +188,9 @@ def resnet34():
     return model
 
 
+"""
+main added
+"""
 if __name__ == '__main__':
     net = ResNetEncoder()
     net(torch.randn((5, 3, 224, 224)))
