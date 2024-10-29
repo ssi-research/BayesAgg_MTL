@@ -11,7 +11,10 @@ MAX_SIZE = 10000
 
 # Adapted from: https://github.com/cornellius-gp/linear_operator/blob/main/linear_operator/utils/cholesky.py
 def psd_safe_cholesky(A, upper=False, out=None, jitter=None, max_tries=None):
-    """Compute the Cholesky decomposition of A. If A is only p.s.d, add a small jitter to the diagonal.
+    """
+    Adapted from: https://github.com/cornellius-gp/linear_operator/blob/main/linear_operator/utils/cholesky.py
+    
+    Compute the Cholesky decomposition of A. If A is only p.s.d, add a small jitter to the diagonal.
     Args:
         :attr:`A` (Tensor):
             The tensor to compute the Cholesky decomposition of
@@ -28,7 +31,7 @@ def psd_safe_cholesky(A, upper=False, out=None, jitter=None, max_tries=None):
     L = _psd_safe_cholesky(A, out=out, jitter=jitter, max_tries=max_tries)
     if torch.any(torch.isnan(L)):
         L = _psd_safe_cholesky(A.cpu(), out=out,
-                               jitter=jitter, max_tries=max_tries).to(A.device)
+                               jitter=jitter, max_tries=max_tries).to(A.device)  # changed
 
     if upper:
         if out is not None:
@@ -39,7 +42,10 @@ def psd_safe_cholesky(A, upper=False, out=None, jitter=None, max_tries=None):
 
 
 def _psd_safe_cholesky(A, out=None, jitter=None, max_tries=None):
-
+    """
+    Adapted from: https://github.com/cornellius-gp/linear_operator/blob/main/linear_operator/utils/cholesky.py
+    """
+    
     L, info = torch.linalg.cholesky_ex(A, out=out)
 
     if not torch.any(info):
