@@ -7,6 +7,9 @@
 
 import torch
 
+"""
+Code taken from: https://github.com/rohban-lab/SwinCheX/blob/main/data/samplers.py
+"""
 
 class SubsetRandomSampler(torch.utils.data.Sampler):
     r"""Samples elements randomly from a given list of indices, without replacement.
